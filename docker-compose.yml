@@ -1,0 +1,61 @@
+version: "3.7"
+
+networks:
+  test-symfony:
+    external:
+      name: test-symfony
+
+services:
+#  app:
+#    image:
+#    restart: always
+#    ports:
+#      - 9087:9087
+#    container_name: app-{$APP_CONTAINER_NAME}
+#    depends_on:
+#      - db-{$APP_CONTAINER_NAME}
+#    volumes:
+#    env_file:
+#      - .env
+#    networks:
+#      - test-symfony
+#
+#  nginx:
+#    image:
+#    restart: always
+#    ports:
+#      - 9087:9087
+#    container_name: nginx-{$APP_CONTAINER_NAME}
+#    depends_on:
+#      - db-{$APP_CONTAINER_NAME}
+#    volumes:
+#    env_file:
+#      - .env
+#    networks:
+#      - test-symfony
+
+  db:
+    image: postgres
+    restart: always
+#    ports:
+#      - 8002:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data:rw
+    container_name: db-${APP_CONTAINER_NAME}
+#    volumes:
+    env_file:
+      - .env
+    networks:
+      - test-symfony
+
+#  cli:
+#    image:
+#    restart: on-failure
+#    ports:
+#      - 9087:9087
+#    container_name: cli-{$APP_CONTAINER_NAME}
+#    volumes:
+#    env_file:
+#      - .env
+#    networks:
+#      - test-symfony
