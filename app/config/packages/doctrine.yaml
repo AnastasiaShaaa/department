@@ -1,24 +1,26 @@
 doctrine:
     dbal:
-        dbname: '%env(resolve:DB_NAME)%'
-        host: '%env(resolve:DB_HOST)%'
-        port: '%env(resolve:DB_PORT)%'
-        user: '%env(resolve:DB_USER)%'
-        password: '%env(resolve:DB_PASSWORD)%'
-        charset: '%env(resolve:DB_CHARSET)%'
-        driver: '%env(resolve:DB_DRIVER)%'
-        server_version: '13.1'
+        url: '%env(resolve:DB_URL)%'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            App:
+            Employee:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
-
-
-# php bin/console doctrine:database:create
+                dir: '%kernel.project_dir%/src/Module/Employee/Model'
+                prefix: 'Employee\Model'
+                alias: Employee
+            Department:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Module/Department/Model'
+                prefix: 'Department\Model'
+                alias: Department
+            Grade:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Module/Grade/Model'
+                prefix: 'Grade\Model'
+                alias: Grade
