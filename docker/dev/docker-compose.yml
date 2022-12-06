@@ -1,0 +1,93 @@
+version: "3.7"
+
+networks:
+  symfony:
+    driver: bridge
+
+services:
+  app:
+    build:
+      args:
+        GID: ${GID}
+        UID: ${UID}
+        GROUP_NAME: ${GROUP_NAME}
+        USER_NAME: ${USER_NAME}
+      context: ..
+      dockerfile: dev/php/Dockerfile
+    restart: always
+#    working_dir: /app
+    container_name: app-${APP_CONTAINER_NAME}
+    depends_on:
+      - db
+    volumes:
+      - ./data:/var/www
+      - ./../../app:/app
+#      - ${DOCKER_APP_PATH}:${DOCKER_DESTINATION_PATH}:rw
+#      - ${APP_PATH}:${DESTINATION_PATH}:rw
+    environment:
+      # xDebug Configurations
+      PHP_ENABLE_XDEBUG: "${PHP_ENABLE_XDEBUG}"
+      #      XDEBUG_CONFIG: "${XDEBUG_CONFIG}"
+      PHP_IDE_CONFIG: "${PHP_IDE_CONFIG}"
+      APP_DEBUG: "${APP_DEBUG}"
+      APP_ENV: "${APP_ENV}"
+    env_file:
+      - .env
+    networks:
+      - symfony
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - ${DB_PORT}:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data:rw
+    container_name: db-${APP_CONTAINER_NAME}
+    env_file:
+      - .env
+    networks:
+      - symfony
+
+  php-cli:
+    build:
+      args:
+        GID: ${GID}
+        UID: ${UID}
+        GROUP_NAME: ${GROUP_NAME}
+        USER_NAME: ${USER_NAME}
+        SYMFONY_CLI_VERSION: ${SYMFONY_CLI_VERSION}
+      context: ..
+      dockerfile: dev/php-cli/Dockerfile
+    user: ${UID}:${GID}
+#    working_dir: app/department/app
+    restart: on-failure
+    container_name: cli-${APP_CONTAINER_NAME}
+    depends_on:
+      - db
+    volumes:
+      - ./../.././:/app:cached
+#      - ./php/php.ini:/usr/local/etc/php/php.ini
+    env_file:
+      - .env
+    networks:
+      - symfony
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-${APP_CONTAINER_NAME}
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "${NGINX_PORT}:80"
+    volumes:
+#      - ./../.././:/app
+      - ./../../app:/app
+      - ./nginx:/etc/nginx/conf.d/
+    networks:
+      - symfony
