@@ -3,26 +3,27 @@ doctrine:
         url: '%env(resolve:DB_URL)%'
         types:
             uuid: Ramsey\Uuid\Doctrine\UuidType
+            enum_grade_type: Department\Infrastructure\Doctrine\Type\GradeType
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            Employee:
-                is_bundle: false
-                type: xml
-                dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Employee'
-                prefix: 'Employee\Model'
-                alias: Employee
-            Department:
-                is_bundle: false
-                type: xml
-                dir: '%kernel.project_dir%/src/Module/Department/Model'
-                prefix: 'Department\Model'
-                alias: Department
+#            Employee:
+#                is_bundle: false
+#                type: xml
+#                dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Employee'
+#                prefix: 'Employee\Model'
+#                alias: Employee
+#            Department:
+#                is_bundle: false
+#                type: xml
+#                dir: '%kernel.project_dir%/src/Module/Department/Model'
+#                prefix: 'Department\Model'
+#                alias: Department
             Grade:
                 is_bundle: false
                 type: xml
-                dir: '%kernel.project_dir%/src/Module/Grade/Model'
-                prefix: 'Grade\Model'
+                dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Grade'
+                prefix: 'Department\Module\Grade\Model'
                 alias: Grade
