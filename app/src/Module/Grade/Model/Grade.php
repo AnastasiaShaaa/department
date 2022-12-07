@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Department\Module\Grade\Model;
 
+use DateTimeImmutable;
 use Module\Grade\Enum\GradeTypeEnum;
 use Ramsey\Uuid\Uuid;
 
@@ -15,6 +16,8 @@ class Grade
         private int $salary,
         private ?string $description,
         private ?string $instruction,
+        private DateTimeImmutable $createdAt,
+        private DateTimeImmutable $updatedAt,
     ) {}
 
     public function getId(): Uuid
@@ -40,5 +43,15 @@ class Grade
     public function getInstruction(): ?string
     {
         return $this->instruction;
+    }
+
+    public function getCreatedAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt(): DateTimeImmutable
+    {
+        return $this->updatedAt;
     }
 }

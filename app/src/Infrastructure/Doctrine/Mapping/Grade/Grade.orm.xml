@@ -29,6 +29,8 @@
         <field name="description" column="description" type="string" length="100" nullable="true" />
         <field name="instruction" column="instruction" type="string" length="250" nullable="true" />
         <field name="salary" column="salary" type="integer" length="50" />
+        <field name="createdAt" column="created_at" type="datetime_immutable" />
+        <field name="updatedAt" column="updated_at" type="datetime_immutable" />
 
 
 <!--        <one-to-one field="address" target-entity="Address" inversed-by="user">-->
