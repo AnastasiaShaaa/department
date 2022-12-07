@@ -7,10 +7,13 @@ namespace Department\Module\Employee\Model;
 use DateTimeImmutable;
 use Department\Module\Employee\Field\Email;
 use Department\Module\Employee\Field\Phone;
+use Department\Module\Grade\Model\Grade;
 use Ramsey\Uuid\Uuid;
 
 final class Employee
 {
+    private ?Grade $grade = null;
+
     public function __construct(
         private Uuid $id,
         private string $fullname,
@@ -66,5 +69,15 @@ final class Employee
     public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updatedAt;
+    }
+
+    public function getGrade(): ?Grade
+    {
+        return $this->grade;
+    }
+
+    public function setGrade(?Grade $grade): void
+    {
+        $this->grade = $grade;
     }
 }

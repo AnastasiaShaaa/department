@@ -6,17 +6,39 @@ namespace Department\Module\Department\Model;
 
 use DateTimeImmutable;
 use Department\Module\Department\Enum\DepartmentTypeEnum;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Ramsey\Uuid\Uuid;
 
 class Department
 {
+    private ?Collection $grades;
+
     public function __construct(
         private Uuid $id,
         private DepartmentTypeEnum $name,
-        private ?string $description,
         private DateTimeImmutable $createdAt,
         private DateTimeImmutable $updatedAt,
-    ) {}
+        private ?string $description,
+    ) {
+        $this->grades = new ArrayCollection();
+    }
+
+    public static function make(
+        Uuid $id,
+        DepartmentTypeEnum $name,
+        ?string $description,
+        ?DateTimeImmutable $createdAt,
+        ?DateTimeImmutable $updatedAt,
+    ): Department {
+        return new Department(
+          $id,
+          $name,
+        $createdAt ?? new DateTimeImmutable(),
+        $updatedAt ?? new DateTimeImmutable(),
+            $description,
+        );
+    }
 
     public function getId(): Uuid
     {

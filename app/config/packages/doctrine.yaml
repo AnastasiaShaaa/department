@@ -5,8 +5,8 @@ doctrine:
             uuid: Ramsey\Uuid\Doctrine\UuidType
             enum_grade_type: Department\Infrastructure\Doctrine\Type\GradeType
             enum_department_type: Department\Infrastructure\Doctrine\Type\DepartmentType
-            phone: Department\Infrastructure\Doctrine\Type\PhoneType
-            email: Department\Infrastructure\Doctrine\Type\EmailType
+            phone_type: Department\Infrastructure\Doctrine\Type\PhoneType
+            email_type: Department\Infrastructure\Doctrine\Type\EmailType
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
