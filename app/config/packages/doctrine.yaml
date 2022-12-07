@@ -4,6 +4,7 @@ doctrine:
         types:
             uuid: Ramsey\Uuid\Doctrine\UuidType
             enum_grade_type: Department\Infrastructure\Doctrine\Type\GradeType
+            enum_department_type: Department\Infrastructure\Doctrine\Type\DepartmentType
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
@@ -15,12 +16,12 @@ doctrine:
 #                dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Employee'
 #                prefix: 'Employee\Model'
 #                alias: Employee
-#            Department:
-#                is_bundle: false
-#                type: xml
-#                dir: '%kernel.project_dir%/src/Module/Department/Model'
-#                prefix: 'Department\Model'
-#                alias: Department
+            Department:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Department'
+                prefix: 'Department\Module\Department\Model'
+                alias: Department
             Grade:
                 is_bundle: false
                 type: xml

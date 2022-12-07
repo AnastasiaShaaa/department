@@ -17,14 +17,16 @@ final class Version20221207113808 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->addSql('CREATE TABLE grades (id UUID NOT NULL, name VARCHAR(100) NOT NULL, description VARCHAR(100) DEFAULT NULL, instruction VARCHAR(250) DEFAULT NULL, salary INT NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE INDEX name_idx ON grades (name)');
-        $this->addSql('CREATE UNIQUE INDEX search_idx ON grades (name)');
+        $this->addSql('CREATE INDEX grade_name_idx ON grades (name)');
+        $this->addSql('CREATE UNIQUE INDEX grade_search_idx ON grades (name)');
         $this->addSql('COMMENT ON COLUMN grades.id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN grades.name IS \'(DC2Type:enum_grade_type)\'');
     }
 
     public function down(Schema $schema): void
     {
+        $this->addSql('DROP INDEX grade_search_idx');
+        $this->addSql('DROP INDEX grade_name_idx');
         $this->addSql('DROP TABLE grades');
     }
 }
