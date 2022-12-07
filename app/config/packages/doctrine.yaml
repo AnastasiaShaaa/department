@@ -8,19 +8,19 @@ doctrine:
         mappings:
             Employee:
                 is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Module/Employee/Model'
+                type: xml
+                dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Employee'
                 prefix: 'Employee\Model'
                 alias: Employee
             Department:
                 is_bundle: false
-                type: annotation
+                type: xml
                 dir: '%kernel.project_dir%/src/Module/Department/Model'
                 prefix: 'Department\Model'
                 alias: Department
             Grade:
                 is_bundle: false
-                type: annotation
+                type: xml
                 dir: '%kernel.project_dir%/src/Module/Grade/Model'
                 prefix: 'Grade\Model'
                 alias: Grade

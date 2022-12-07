@@ -26,7 +26,7 @@ services:
 #      - ${APP_PATH}:${DESTINATION_PATH}:rw
     environment:
       # xDebug Configurations
-      PHP_ENABLE_XDEBUG: "${PHP_ENABLE_XDEBUG}"
+#      PHP_ENABLE_XDEBUG: "${PHP_ENABLE_XDEBUG}"
       #      XDEBUG_CONFIG: "${XDEBUG_CONFIG}"
       PHP_IDE_CONFIG: "${PHP_IDE_CONFIG}"
       APP_DEBUG: "${APP_DEBUG}"
@@ -70,7 +70,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./../.././:/app:cached
+      - ./../.././app:/app:cached
 #      - ./php/php.ini:/usr/local/etc/php/php.ini
     env_file:
       - .env
