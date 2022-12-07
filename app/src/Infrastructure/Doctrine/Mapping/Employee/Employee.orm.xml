@@ -14,16 +14,29 @@
             <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
         </id>
 
-        <field name="fullname" column="fullname" type="string" length="255"/>
-        <field name="email" column="email" type="email" length="50" unique="true" />
-        <field name="phone" column="phone" type="phone" nullable="true" />
-        <field name="age" column="age" type="integer" nullable="true" />
-        <!--        <field name="birthday" column="birthday" type="date_immutable" nullable="true" />-->
-        <field name="address" column="address" type="string" length="255" nullable="true" />
-        <field name="experience" column="experience" type="string" length="50" nullable="true" />
-        <field name="createdAt" column="created_at" type="datetime_immutable" />
-        <field name="updatedAt" column="updated_at" type="datetime_immutable" />
+        <field name="fullname" type="string" length="255"/>
+        <field name="email" type="email_type" length="50" unique="true" />
+        <field name="phone" type="phone_type" nullable="true" />
+        <field name="age" type="integer" nullable="true" />
+        <field name="address" type="string" length="255" nullable="true" />
+        <field name="experience" type="string" length="50" nullable="true" />
+        <field name="createdAt" column="created_at" type="datetime_immutable" >
+            <options>
+                <option name="default">CURRENT_TIMESTAMP</option>
+            </options>
+        </field>
+        <field name="updatedAt" column="updated_at" type="datetime_immutable" >
+            <options>
+                <option name="default">CURRENT_TIMESTAMP</option>
+            </options>
+        </field>
 
+        <one-to-one field="grade" target-entity="Department\Module\Employee\Model\EmployeeGrade" mapped-by="employee" orphan-removal="true">
+            <cascade>
+                <cascade-remove/>
+                <cascade-persist/>
+            </cascade>
+        </one-to-one>
     </entity>
 
 </doctrine-mapping>
