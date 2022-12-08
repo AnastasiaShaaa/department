@@ -6,13 +6,14 @@ namespace Department\Module\Grade\Model;
 
 use DateTimeImmutable;
 use Department\Module\Department\Model\Department;
-use Department\Module\Employee\Model\Employee;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Module\Grade\Enum\GradeTypeEnum;
 use Ramsey\Uuid\Uuid;
 
 class Grade
 {
-    private ?Employee $employee;
+    private ?Collection $employees;
 
     public function __construct(
         private Uuid $id,
@@ -23,7 +24,9 @@ class Grade
         private DateTimeImmutable $updatedAt,
         private ?string $description,
         private ?string $instruction,
-    ) {}
+    ) {
+        $this->employees = new ArrayCollection();
+    }
 
     public static function make(
         Uuid $id,
@@ -85,15 +88,5 @@ class Grade
     public function getDepartment(): Department
     {
         return $this->department;
-    }
-
-    public function getEmployee(): ?Employee
-    {
-        return $this->employee;
-    }
-
-    public function setEmployee(?Employee $employee): void
-    {
-        $this->employee = $employee;
     }
 }

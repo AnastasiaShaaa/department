@@ -29,12 +29,12 @@
             <join-column name="department_id" referenced-column-name="id" on-delete="CASCADE" />
         </many-to-one>
 
-        <one-to-one field="employee" target-entity="Department\Module\Employee\Model\EmployeeGrade" mapped-by="grade" orphan-removal="true">
+        <one-to-many field="employees" target-entity="Department\Module\Employee\Model\EmployeeGrade" mapped-by="grade" orphan-removal="true">
             <cascade>
                 <cascade-remove/>
                 <cascade-persist/>
             </cascade>
-        </one-to-one>
+        </one-to-many>
 
         <unique-constraints>
             <unique-constraint columns="name,department_id" name="grade_search_idx" />
