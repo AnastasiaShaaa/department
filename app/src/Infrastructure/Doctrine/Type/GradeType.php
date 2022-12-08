@@ -6,7 +6,7 @@ namespace Department\Infrastructure\Doctrine\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
-use Module\Grade\Enum\GradeTypeEnum;
+use Department\Module\Grade\Enum\GradeTypeEnum;
 
 final class GradeType extends Type
 {

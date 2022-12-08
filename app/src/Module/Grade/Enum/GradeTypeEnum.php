@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Module\Grade\Enum;
+namespace Department\Module\Grade\Enum;
 
 enum GradeTypeEnum: string
 {
