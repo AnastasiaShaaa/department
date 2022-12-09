@@ -1,0 +1,14 @@
+gradeCreate:
+  path: /api/grade/create
+  controller: Grade\Infrastructure\Controller\GradeCreateAction
+  methods: POST
+
+gradeUpdate:
+  path: /api/grade/update
+  controller: Grade\Infrastructure\Controller\GradeUpdateAction
+  methods: POST
+
+gradeDelete:
+  path: /api/grade/delete
+  controller: Grade\Infrastructure\Controller\GradeDeleteAction
+  methods: POST

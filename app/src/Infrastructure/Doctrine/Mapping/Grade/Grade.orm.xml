@@ -10,7 +10,7 @@
             <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
         </id>
 
-        <field name="name" type="enum_grade_type" length="100" unique="true" />
+        <field name="name" type="string" length="100" unique="true" />
         <field name="description" type="string" length="100" nullable="true" />
         <field name="instruction" type="string" length="250" nullable="true" />
         <field name="salary" type="integer" length="50" />

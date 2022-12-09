@@ -25,6 +25,7 @@ final class LoginHandler
         $user = $this->findUser($input);
         $this->validatePassword($input, $user);
         $output = $this->makeResponse($user);
+        // TODO: должно быть в событии
         $this->em->flush();
         return $output;
     }

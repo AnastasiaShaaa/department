@@ -7,9 +7,12 @@ namespace Department\Infrastructure\Collector;
 use PHPUnit\Util\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Composite;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 abstract class AbstractCollector
 {
+    protected ValidatorInterface $validator;
+
     abstract public function collect(Request $request): mixed;
 
     abstract protected function constraints(): Composite;

@@ -5,18 +5,17 @@ declare(strict_types=1);
 namespace Department\Module\Department\Model;
 
 use DateTimeImmutable;
-use Department\Module\Department\Enum\DepartmentTypeEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class Department
 {
     private ?Collection $grades;
 
     public function __construct(
-        private Uuid $id,
-        private DepartmentTypeEnum $name,
+        private UuidInterface $id,
+        private string $name,
         private DateTimeImmutable $createdAt,
         private DateTimeImmutable $updatedAt,
         private ?string $description,
@@ -25,11 +24,11 @@ class Department
     }
 
     public static function make(
-        Uuid $id,
-        DepartmentTypeEnum $name,
+        UuidInterface $id,
+        string $name,
         ?string $description,
-        ?DateTimeImmutable $createdAt,
-        ?DateTimeImmutable $updatedAt,
+        ?DateTimeImmutable $createdAt = null,
+        ?DateTimeImmutable $updatedAt = null,
     ): Department {
         return new Department(
           $id,
@@ -40,7 +39,7 @@ class Department
         );
     }
 
-    public function getId(): Uuid
+    public function getId(): UuidInterface
     {
         return $this->id;
     }
@@ -50,7 +49,7 @@ class Department
         return $this->description;
     }
 
-    public function getName(): DepartmentTypeEnum
+    public function getName(): string
     {
         return $this->name;
     }
