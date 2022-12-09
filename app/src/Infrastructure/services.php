@@ -1,0 +1,47 @@
+<?php
+
+use Department\Infrastructure\Doctrine\Repository\DoctrineUserRepository;
+use Department\Infrastructure\Doctrine\Repository\DoctrineUserTokenRepository;
+use Department\Infrastructure\Service\Security\PasswordHasher;
+use Department\Module\Auth\Repository\UserRepositoryInterface;
+use Department\Module\Auth\Repository\UserTokenRepositoryInterface;
+use Department\Module\Auth\Service\PasswordHasherInterface;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services
+        ->defaults()
+        ->autowire();
+
+//    $services
+//        ->load('Department\\Infrastructure\\Messenger\\', __DIR__ . '/Messenger/')
+//        ->autoconfigure();
+
+    // Controllers and commands
+    $services
+        ->load('Department\\Infrastructure\\Controller\\', __DIR__ . '/Controller/')
+        ->tag('controller.service_arguments')
+        ->autoconfigure();
+
+    $services
+        ->load('Department\\Infrastructure\\Collector\\', __DIR__ . '/Collector/')
+        ->tag('collector.service_arguments')
+        ->autoconfigure();
+
+    $services
+        ->load('Department\\Infrastructure\\Doctrine\\Repository\\', __DIR__ . '/Doctrine/Repository/')
+        ->tag('repository.service_arguments')
+        ->autoconfigure();
+
+    $services
+        ->load('Department\\Infrastructure\\Service\\Security\\', __DIR__ . '/Service/Security/')
+        ->tag('service.security.service_arguments')
+        ->autoconfigure();
+
+    $services
+        ->alias(UserRepositoryInterface::class, DoctrineUserRepository::class)
+        ->alias(UserTokenRepositoryInterface::class, DoctrineUserTokenRepository::class)
+        ->alias(PasswordHasherInterface::class, PasswordHasher::class);
+};

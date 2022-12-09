@@ -11,18 +11,14 @@ class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
-//    protected function configureContainer(ContainerConfigurator $container): void
-//    {
-//        $container->import('../config/{packages}/*.yaml');
-//        $container->import('../config/{packages}/'.$this->environment.'/*.yaml');
-//
-//        if (is_file(\dirname(__DIR__).'/config/services.yaml')) {
-//            $container->import('../config/services.yaml');
-//            $container->import('../config/{services}_'.$this->environment.'.yaml');
-//        } elseif (is_file($path = \dirname(__DIR__).'/config/services.php')) {
-//            (require $path)($container->withPath($path), $this);
-//        }
-//    }
+    private function configureContainer(ContainerConfigurator $container): void
+    {
+        $configDir = $this->getConfigDir();
+
+        $container->import("{$configDir}/{packages}/*.yaml");
+        $container->import("{$configDir}/{packages}/{$this->environment}/*.yaml");
+        $container->import("{$configDir}/services.php");
+    }
 //
 //    protected function configureRoutes(RoutingConfigurator $routes): void
 //    {

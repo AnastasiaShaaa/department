@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use Department\Module\Department\Model\Department;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Module\Grade\Enum\GradeTypeEnum;
+use Department\Module\Grade\Enum\GradeTypeEnum;
 use Ramsey\Uuid\Uuid;
 
 class Grade

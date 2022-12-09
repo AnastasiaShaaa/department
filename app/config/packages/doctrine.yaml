@@ -30,3 +30,8 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Grade'
                 prefix: 'Department\Module\Grade\Model'
                 alias: Grade
+            Auth:
+                type: xml
+                dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Auth'
+                prefix: 'Department\Module\Auth\Model'
+                alias: Auth
