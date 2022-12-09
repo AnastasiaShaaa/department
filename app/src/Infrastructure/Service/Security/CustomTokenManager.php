@@ -18,6 +18,7 @@ final class CustomTokenManager implements TokenManagerInterface
         private JWTTokenManagerInterface $tokenManager,
         private UserTokenRepositoryInterface $tokenRepository,
         private int $expire = 30 * 86400,
+//        private int $expire,
     ) {}
 
     public function makeToken(User $user): string

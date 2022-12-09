@@ -8,5 +8,5 @@ use Department\Module\Auth\Model\User;
 
 interface UserRepositoryInterface
 {
-    public function find(string $email): ?User;
+    public function findByEmail(string $email): ?User;
 }

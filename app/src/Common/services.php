@@ -11,9 +11,12 @@ return function(ContainerConfigurator $configurator): void {
         ->defaults()
         ->autowire();
 
+//    $services  ->defaults()
+//        ->bind('int $expire', 3600);
+
     $services->set(CustomTokenManager::class)
-//        ->arg('$expire', '%expire%');
-        ->arg('$expire', 3600);
+        ->arg('int $expire', '%expire%');
+//        ->args(['$expire'=> 3600]);
 
     $services
         ->alias(TokenManagerInterface::class, CustomTokenManager::class);

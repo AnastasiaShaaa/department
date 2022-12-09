@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Department\Infrastructure\Doctrine\Repository;
 
 use Department\Module\Auth\Model\User;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Department\Module\Auth\Repository\UserRepositoryInterface;
@@ -21,15 +22,14 @@ final class DoctrineUserRepository implements UserRepositoryInterface
         $this->entityRepository = $em->getRepository(User::class);
     }
 
-    public function find(string $email): ?User
+    public function findByEmail(string $email): ?User
     {
         $qb = $this->entityRepository->createQueryBuilder('us');
 
-        // TODO: поправить возврат ответа
         return $qb
             ->andWhere($qb->expr()->eq(':email', 'us.email'))
             ->setParameter('email', $email)
             ->getQuery()
-            ->execute()[0];
+            ->getOneOrNullResult(AbstractQuery::HYDRATE_OBJECT);
     }
 }

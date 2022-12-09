@@ -9,6 +9,7 @@ use Department\Module\Auth\Service\TokenManagerInterface;
 use Department\Module\Auth\Repository\UserRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Department\Module\Auth\Service\PasswordHasherInterface;
+use DomainException;
 
 final class LoginHandler
 {
@@ -30,8 +31,8 @@ final class LoginHandler
 
     private function findUser(LoginInput $input): User
     {
-        if (!$user = $this->userRepository->find($input->getEmail()->getValue())) {
-            throw new \Exception('User not exist');
+        if (!$user = $this->userRepository->findByEmail($input->getEmail()->getValue())) {
+            throw new DomainException('User not exist');
         }
         return $user;
     }
@@ -39,7 +40,7 @@ final class LoginHandler
     private function validatePassword(LoginInput $input, User $user)
     {
         if (!$this->hasher->verify($user->getPassword(), $input->getPassword())) {
-            throw new \Exception('Incorrect password');
+            throw new DomainException('Incorrect password');
         }
     }
 

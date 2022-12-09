@@ -4,8 +4,8 @@ services:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    bind:
-      $expire: 3650
+#    bind:
+#      $expire: 3650
 
 #  Department\Module\Auth\Repository\UserTokenInterface: '@Department/Infrastructure/Doctrine/Repository/DoctrineUserTokenRepository'
   Department\Module\Auth\Service\PasswordHasherInterface: '@Department/Infrastructure/Service/Security/PasswordHasher'
