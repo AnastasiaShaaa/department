@@ -1,60 +1,47 @@
+<?php
+
+use Department\Infrastructure\Doctrine\Repository\DoctrineUserRepository;
+use Department\Infrastructure\Doctrine\Repository\DoctrineUserTokenRepository;
+use Department\Infrastructure\Service\Security\PasswordHasher;
+use Department\Module\Auth\Repository\UserRepositoryInterface;
+use Department\Module\Auth\Repository\UserTokenRepositoryInterface;
+use Department\Module\Auth\Service\PasswordHasherInterface;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $configurator): void {
     $services = $configurator->services();
 
     $services
-    ->defaults()
-    ->autowire();
+        ->defaults()
+        ->autowire();
 
-    $services
-    ->load('Nutricology\\Infrastructure\\EventSubscriber\\', __DIR__ . '/EventSubscriber/')
-    ->tag('kernel.event_subscriber');
-
-    $services
-    ->set(AppHelpEventSubscriber::class)
-    ->tag('kernel.event_subscriber')
-    ->args([
-    '$infoEmail' => '%env(MAILER_SUPPORT)%',
-    ]);
-
-    $services
-    ->load('Nutricology\\Infrastructure\\Messenger\\', __DIR__ . '/Messenger/')
-    ->autoconfigure();
-
-    // Middleware configuration
-    $services->set(DatabaseErrorHandler::class)->public();
-    $services->set(HttpErrorHandler::class)->public();
-    $services->set(ValidateErrorHandler::class)->public();
-
-    $services->set(PersistenceFlushMiddleware::class)->public();
-
-    $services
-    ->set(ErrorMiddleware::class)
-    ->public()
-    ->args([
-    '$logger' => service('logger'),
-    '$container' => service('service_container'),
-    '$translator' => service('translator'),
-    '$handlers' => [
-    HttpErrorHandler::class,
-    ValidateErrorHandler::class,
-    DatabaseErrorHandler::class,
-    ],
-    ]);
-
-    $services
-    ->set(MiddlewareKernelSubscriber::class)
-    ->tag('kernel.event_subscriber')
-    ->args([
-    '$container' => service('service_container'),
-    '$defaultMiddlewares' => [
-    ErrorMiddleware::class,
-    ],
-    ]);
+//    $services
+//        ->load('Department\\Infrastructure\\Messenger\\', __DIR__ . '/Messenger/')
+//        ->autoconfigure();
 
     // Controllers and commands
     $services
-    ->load('Nutricology\\Infrastructure\\Controller\\', __DIR__ . '/Controller/')
-    ->tag('controller.service_arguments')
-    ->autoconfigure();
-}
+        ->load('Department\\Infrastructure\\Controller\\', __DIR__ . '/Controller/')
+        ->tag('controller.service_arguments')
+        ->autoconfigure();
+
+    $services
+        ->load('Department\\Infrastructure\\Collector\\', __DIR__ . '/Collector/')
+        ->tag('collector.service_arguments')
+        ->autoconfigure();
+
+    $services
+        ->load('Department\\Infrastructure\\Doctrine\\Repository\\', __DIR__ . '/Doctrine/Repository/')
+        ->tag('repository.service_arguments')
+        ->autoconfigure();
+
+    $services
+        ->load('Department\\Infrastructure\\Service\\Security\\', __DIR__ . '/Service/Security/')
+        ->tag('service.security.service_arguments')
+        ->autoconfigure();
+
+    $services
+        ->alias(UserRepositoryInterface::class, DoctrineUserRepository::class)
+        ->alias(UserTokenRepositoryInterface::class, DoctrineUserTokenRepository::class)
+        ->alias(PasswordHasherInterface::class, PasswordHasher::class);
+};

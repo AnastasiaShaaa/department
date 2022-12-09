@@ -20,9 +20,10 @@ final class LoginAction extends AbstractController
 
     public function __invoke(Request $request): JsonResponse
     {
+//        dd($request->request->all());
+
         try {
             $this->validate($request);
-
             $result = $this->handler->handle($this->collectData($request));
         } catch (\Exception $e) {
             return new JsonResponse([

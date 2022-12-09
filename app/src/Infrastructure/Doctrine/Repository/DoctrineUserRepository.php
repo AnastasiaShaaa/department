@@ -25,10 +25,11 @@ final class DoctrineUserRepository implements UserRepositoryInterface
     {
         $qb = $this->entityRepository->createQueryBuilder('us');
 
+        // TODO: поправить возврат ответа
         return $qb
             ->andWhere($qb->expr()->eq(':email', 'us.email'))
             ->setParameter('email', $email)
             ->getQuery()
-            ->execute();
+            ->execute()[0];
     }
 }

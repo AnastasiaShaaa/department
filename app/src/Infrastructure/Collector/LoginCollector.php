@@ -21,15 +21,18 @@ final class LoginCollector
 
     public function collect(Request $request): LoginInput
     {
+        // TODO: поправить получение параметров
+
         return new LoginInput(
-            $request->get('email'),
-            $request->get('password'),
+            $request->toArray()['email'],
+            $request->toArray()['password'],
         );
     }
 
     public function validate(Request $request): void
     {
-        $errors = $this->validator->validate($request, $this->constraints());
+        $errors = $this->validator->validate($this->getContent($request), $this->constraints());
+//        dd($errors);
         if ($errors->count()) {
             throw new Exception('Invalid data');
         }
@@ -44,7 +47,16 @@ final class LoginCollector
             ],
             'password' => [
                 new NotBlank(),
-            ]
+            ],
         ]);
+    }
+
+    protected function getContent(Request $request): array
+    {
+        return array_merge(
+            $request->query->all(),
+            $request->toArray(),
+            $request->files->all()
+        );
     }
 }

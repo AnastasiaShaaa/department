@@ -1,8 +1,9 @@
 security:
+    enable_authenticator_manager: true
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
             algorithm: 'auto'
-            cost: 15
+        Department\Infrastructure\Service\Security\PasswordHasher: 'native'
 #        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:

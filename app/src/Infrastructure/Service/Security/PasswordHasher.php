@@ -28,4 +28,6 @@ final class PasswordHasher implements PasswordHasherInterface
     {
         return $this->factory->getPasswordHasher(self::class);
     }
+
+
 }

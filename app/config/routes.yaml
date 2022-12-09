@@ -6,7 +6,7 @@ healthcheck:
 login:
   path: /api/auth/login
   controller: Department\Infrastructure\Controller\LoginAction
-  methods: POST
+  methods: POST|OPTIONS
 
 refresh:
   path: /api/auth/refresh

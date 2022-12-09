@@ -38,7 +38,6 @@ final class LoginHandler
 
     private function validatePassword(LoginInput $input, User $user)
     {
-        // TODO: через dd захешить пароль
         if (!$this->hasher->verify($user->getPassword(), $input->getPassword())) {
             throw new \Exception('Incorrect password');
         }
