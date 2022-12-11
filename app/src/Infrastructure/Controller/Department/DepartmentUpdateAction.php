@@ -26,7 +26,7 @@ final class DepartmentUpdateAction extends AbstractController
     {
         try {
             $this->validate($request, $this->collector);
-            $output = $this->execute($this->collectData($request, $this->collector));
+            $output = $this->handle($this->collectData($request, $this->collector));
             return $this->makeResponse($output);
         } catch (Exception $e) {
             // TODO: пока так, потом события
@@ -34,15 +34,16 @@ final class DepartmentUpdateAction extends AbstractController
         }
     }
 
-    protected function execute(DepartmentUpdateInput $input): DepartmentUpdateOutput
+    protected function handle(DepartmentUpdateInput $input): DepartmentUpdateOutput
     {
         return $this->handler->handle($input);
     }
 
     protected function makeResponse(DepartmentUpdateOutput $output): JsonResponse
     {
+        // TODO: что возвращать при обновлении
         return new JsonResponse([
-//            'id' => $output->getId(),
+            'message' => $output->getMessage(),
         ]);
     }
 }

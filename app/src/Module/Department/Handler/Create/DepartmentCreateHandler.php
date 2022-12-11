@@ -56,6 +56,9 @@ final class DepartmentCreateHandler
 
     private function makeOutput(UuidInterface $uuid): DepartmentCreateOutput
     {
-        return new DepartmentCreateOutput($uuid->toString());
+        return new DepartmentCreateOutput(
+            $uuid->toString(),
+            'Successful creation of department!'
+        );
     }
 }

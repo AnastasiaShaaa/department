@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Department\Infrastructure\Controller\Department;
 
+use Department\Common\Exception\ErrorException;
+use Department\Infrastructure\Collector\AbstractCollector;
 use Department\Infrastructure\Collector\Department\DepartmentCreateCollector;
 use Department\Infrastructure\Controller\AbstractController;
 use Department\Module\Department\Handler\Create\DepartmentCreateHandler;
@@ -26,7 +28,7 @@ final class DepartmentCreateAction extends AbstractController
     {
         try {
             $this->validate($request, $this->collector);
-            $output = $this->execute($this->collectData($request, $this->collector));
+            $output = $this->handle($this->collectData($request, $this->collector));
             return $this->makeResponse($output);
         } catch (Exception $e) {
             // TODO: пока так, потом события
@@ -34,7 +36,7 @@ final class DepartmentCreateAction extends AbstractController
         }
     }
 
-    protected function execute(DepartmentCreateInput $input): DepartmentCreateOutput
+    protected function handle(DepartmentCreateInput $input): DepartmentCreateOutput
     {
         return $this->handler->handle($input);
     }
@@ -42,7 +44,9 @@ final class DepartmentCreateAction extends AbstractController
     protected function makeResponse(DepartmentCreateOutput $output): JsonResponse
     {
         return new JsonResponse([
+            // TODO: что возвращать при создании
             'id' => $output->getId(),
+            'message' => $output->getMessage(),
         ]);
     }
 }

@@ -1,14 +1,14 @@
 departmentCreate:
   path: /api/department/create
-  controller: Department\Infrastructure\Controller\DepartmentCreateAction
+  controller: Department\Infrastructure\Controller\Department\DepartmentCreateAction
   methods: POST
 
-#departmentUpdate:
-#  path: /api/department/update
-#  controller: Department\Infrastructure\Controller\DepartmentUpdateAction
-#  methods: POST
+departmentUpdate:
+  path: /api/department/update
+  controller: Department\Infrastructure\Controller\Department\DepartmentUpdateAction
+  methods: POST
 
 departmentDelete:
   path: /api/department/delete
-  controller: Department\Infrastructure\Controller\DepartmentDeleteAction
+  controller: Department\Infrastructure\Controller\Department\DepartmentDeleteAction
   methods: POST

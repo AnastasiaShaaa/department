@@ -5,14 +5,12 @@ declare(strict_types=1);
 namespace Department\Infrastructure\Collector\Department;
 
 use Department\Infrastructure\Collector\AbstractCollector;
-use Department\Module\Department\Enum\DepartmentTypeEnum;
-use Department\Module\Department\Handler\DepartmentCreateInput;
+use Department\Module\Department\Handler\Create\DepartmentCreateInput;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\Blank;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\Composite;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Optional;
 use Symfony\Component\Validator\Constraints\Required;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -27,9 +25,11 @@ final class DepartmentCreateCollector extends AbstractCollector
 
     public function collect(Request $request): DepartmentCreateInput
     {
+        $requestData = $request->toArray();
+
         return new DepartmentCreateInput(
-            $request->toArray()['name'],
-            $request->toArray()['description'],
+            $requestData['name'],
+            $requestData['description'],
         );
     }
 
@@ -39,6 +39,7 @@ final class DepartmentCreateCollector extends AbstractCollector
             'name' => new Required([
                 new Length(['max' => 100]),
             ]),
+            // TODO: сделать необязательным поле и null по умолчанию
             'description' => new Optional([
                 new Length(['max' => 100]),
             ]),

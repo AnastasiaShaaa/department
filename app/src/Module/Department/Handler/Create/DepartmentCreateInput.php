@@ -8,15 +8,15 @@ final class DepartmentCreateInput
 {
     public function __construct(
         private string $name,
-        private string $description,
+        private ?string $description,
     ) {}
 
     public function getName(): string
     {
-        return new $this->name;
+        return $this->name;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }

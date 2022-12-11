@@ -63,4 +63,14 @@ class Department
     {
         return $this->updatedAt;
     }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
+    }
 }
