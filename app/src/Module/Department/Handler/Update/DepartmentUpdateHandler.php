@@ -31,7 +31,7 @@ final class DepartmentUpdateHandler
     private function makeOutput(): DepartmentUpdateOutput
     {
         return new DepartmentUpdateOutput(
-            'Successful updating of department!'
+            'Successful updating of department!',
         );
     }
 

@@ -59,4 +59,9 @@ final class DoctrineDepartmentRepository implements DepartmentRepositoryInterfac
                 ->getQuery()
                 ->getSingleScalarResult() > 0;
     }
+
+    public function remove(Department $department): void
+    {
+        $this->em->remove($department);
+    }
 }

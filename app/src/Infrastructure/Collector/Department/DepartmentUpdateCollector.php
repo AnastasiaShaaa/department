@@ -7,7 +7,6 @@ namespace Department\Infrastructure\Collector\Department;
 use Department\Infrastructure\Collector\AbstractCollector;
 use Department\Module\Department\Handler\Update\DepartmentUpdateInput;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraints\Blank;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\Composite;
 use Symfony\Component\Validator\Constraints\Length;

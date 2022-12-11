@@ -16,4 +16,6 @@ interface DepartmentRepositoryInterface
     public function findById(UuidInterface $id): ?Department;
 
     public function isDuplicate(string $name, UuidInterface $id): bool;
+
+    public function remove(Department $department): void;
 }
