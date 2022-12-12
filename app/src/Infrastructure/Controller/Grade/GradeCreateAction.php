@@ -6,9 +6,9 @@ namespace Department\Infrastructure\Controller\Grade;
 
 use Department\Infrastructure\Collector\Grade\GradeCreateCollector;
 use Department\Infrastructure\Controller\AbstractController;
-use Department\Module\Grade\Handler\GradeCreateHandler;
-use Department\Module\Grade\Handler\GradeCreateInput;
-use Department\Module\Grade\Handler\GradeCreateOutput;
+use Department\Module\Grade\Handler\Create\GradeCreateHandler;
+use Department\Module\Grade\Handler\Create\GradeCreateInput;
+use Department\Module\Grade\Handler\Create\GradeCreateOutput;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;

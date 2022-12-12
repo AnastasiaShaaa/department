@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Department\Infrastructure\Collector\Grade;
 
 use Department\Infrastructure\Collector\AbstractCollector;
-use Department\Module\Grade\Handler\GradeCreateInput;
+use Department\Module\Grade\Handler\Create\GradeCreateInput;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\Composite;

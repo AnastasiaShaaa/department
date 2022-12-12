@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Department\Module\Grade\Handler;
+namespace Department\Module\Grade\Handler\Create;
 
 use Department\Module\Department\Model\Department;
 use Department\Module\Department\Repository\DepartmentRepositoryInterface;
