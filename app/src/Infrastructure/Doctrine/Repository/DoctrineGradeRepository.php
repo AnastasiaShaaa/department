@@ -39,6 +39,29 @@ final class DoctrineGradeRepository implements GradeRepositoryInterface
                 ->getSingleScalarResult() > 0;
     }
 
+    public function findById(UuidInterface $id): ?Grade
+    {
+        return $this->entityRepository->find($id);
+    }
+
+    public function isDuplicate(Department $department, string $name, UuidInterface $id): bool
+    {
+        $qb = $this->entityRepository->createQueryBuilder('g');
+
+        return $qb
+                ->select('COUNT(g.id)')
+                ->andWhere($qb->expr()->eq('g.name', ':name'))
+                ->andWhere($qb->expr()->eq('g.department', ':department'))
+                ->andWhere($qb->expr()->neq('g.id', ':id'))
+                ->setParameters([
+                    'name' => $name,
+                    'department' => $department,
+                    'id' => $id,
+                ])
+                ->getQuery()
+                ->getSingleScalarResult() > 0;
+    }
+
     public function save(Grade $grade): void
     {
         $this->em->persist($grade);

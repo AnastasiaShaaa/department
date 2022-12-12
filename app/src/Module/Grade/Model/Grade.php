@@ -88,4 +88,29 @@ class Grade
     {
         return $this->department;
     }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setSalary(int $salary): void
+    {
+        $this->salary = $salary;
+    }
+
+    public function setDepartment(Department $department): void
+    {
+        $this->department = $department;
+    }
+
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
+    }
+
+    public function setInstruction(?string $instruction): void
+    {
+        $this->instruction = $instruction;
+    }
 }
