@@ -1,6 +1,7 @@
 <?php
 
 use Department\Infrastructure\Doctrine\Repository\DoctrineDepartmentRepository;
+use Department\Infrastructure\Doctrine\Repository\DoctrineGradeRepository;
 use Department\Infrastructure\Doctrine\Repository\DoctrineUserRepository;
 use Department\Infrastructure\Doctrine\Repository\DoctrineUserTokenRepository;
 use Department\Infrastructure\Service\Security\PasswordHasher;
@@ -8,6 +9,7 @@ use Department\Module\Auth\Repository\UserRepositoryInterface;
 use Department\Module\Auth\Repository\UserTokenRepositoryInterface;
 use Department\Module\Auth\Service\PasswordHasherInterface;
 use Department\Module\Department\Repository\DepartmentRepositoryInterface;
+use Department\Module\Grade\Repository\GradeRepositoryInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $configurator): void {
@@ -46,5 +48,6 @@ return static function (ContainerConfigurator $configurator): void {
         ->alias(UserRepositoryInterface::class, DoctrineUserRepository::class)
         ->alias(UserTokenRepositoryInterface::class, DoctrineUserTokenRepository::class)
         ->alias(DepartmentRepositoryInterface::class, DoctrineDepartmentRepository::class)
+        ->alias(GradeRepositoryInterface::class, DoctrineGradeRepository::class)
         ->alias(PasswordHasherInterface::class, PasswordHasher::class);
 };
