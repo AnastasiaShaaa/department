@@ -1,0 +1,14 @@
+employeeCreate:
+  path: /api/employee/create
+  controller: Employee\Infrastructure\Controller\EmployeeCreateAction
+  methods: POST®
+
+employeeUpdate:
+  path: /api/employee/update
+  controller: Employee\Infrastructure\Controller\EmployeeUpdateAction
+  methods: POST
+
+employeeDelete:
+  path: /api/employee/delete
+  controller: Employee\Infrastructure\Controller\EmployeeDeleteAction
+  methods: POST

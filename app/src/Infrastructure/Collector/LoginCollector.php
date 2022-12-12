@@ -14,9 +14,12 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class LoginCollector extends AbstractCollector
 {
+    // TODO: as basil
     public function __construct(
-        protected ValidatorInterface $validator,
-    ) {}
+        ValidatorInterface $validator,
+    ) {
+        $this->validator = $validator;
+    }
 
     public function collect(Request $request): LoginInput
     {

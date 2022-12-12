@@ -17,7 +17,7 @@ class Grade
 
     public function __construct(
         private Uuid $id,
-        private GradeTypeEnum $name,
+        private string $name,
         private int $salary,
         private Department $department,
         private DateTimeImmutable $createdAt,
@@ -30,7 +30,7 @@ class Grade
 
     public static function make(
         Uuid $id,
-        GradeTypeEnum $name,
+        string $name,
         int $salary,
         Department $department,
         ?string $description,
@@ -55,7 +55,7 @@ class Grade
         return $this->id;
     }
 
-    public function getName(): GradeTypeEnum
+    public function getName(): string
     {
         return $this->name;
     }

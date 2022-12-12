@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 
+// TODO: это должен быть не абстрактный класс а что-то другое
 abstract class AbstractController extends SymfonyAbstractController
 {
     protected function validate(Request $request, AbstractCollector $collector): void

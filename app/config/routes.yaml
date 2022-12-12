@@ -8,11 +8,7 @@ login:
   controller: Department\Infrastructure\Controller\LoginAction
   methods: POST|OPTIONS
 
-refresh:
-  path: /api/auth/refresh
-  controller: Department\Infrastructure\Controller\RefreshAction
-  methods: POST
-
-#login:
-#  path: /api/login
-#  controller: gesdinet.jwtrefreshtoken::refresh
+#refresh:
+#  path: /api/auth/refresh
+#  controller: Department\Infrastructure\Controller\RefreshAction
+#  methods: POST

@@ -1,11 +1,13 @@
 <?php
 
+use Department\Infrastructure\Doctrine\Repository\DoctrineDepartmentRepository;
 use Department\Infrastructure\Doctrine\Repository\DoctrineUserRepository;
 use Department\Infrastructure\Doctrine\Repository\DoctrineUserTokenRepository;
 use Department\Infrastructure\Service\Security\PasswordHasher;
 use Department\Module\Auth\Repository\UserRepositoryInterface;
 use Department\Module\Auth\Repository\UserTokenRepositoryInterface;
 use Department\Module\Auth\Service\PasswordHasherInterface;
+use Department\Module\Department\Repository\DepartmentRepositoryInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $configurator): void {
@@ -19,7 +21,7 @@ return static function (ContainerConfigurator $configurator): void {
 //        ->load('Department\\Infrastructure\\Messenger\\', __DIR__ . '/Messenger/')
 //        ->autoconfigure();
 
-    // Controllers and commands
+    // Controllers
     $services
         ->load('Department\\Infrastructure\\Controller\\', __DIR__ . '/Controller/')
         ->tag('controller.service_arguments')
@@ -43,5 +45,6 @@ return static function (ContainerConfigurator $configurator): void {
     $services
         ->alias(UserRepositoryInterface::class, DoctrineUserRepository::class)
         ->alias(UserTokenRepositoryInterface::class, DoctrineUserTokenRepository::class)
+        ->alias(DepartmentRepositoryInterface::class, DoctrineDepartmentRepository::class)
         ->alias(PasswordHasherInterface::class, PasswordHasher::class);
 };
