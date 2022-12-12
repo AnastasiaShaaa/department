@@ -39,6 +39,12 @@ final class DepartmentDeleteHandler
         }
     }
 
+    private function remove(Department $department): void
+    {
+        // TODO: возможно удаление должностей
+        $this->departmentRepository->remove($department);
+    }
+
     private function flush(): void
     {
         $this->em->flush();
@@ -49,11 +55,5 @@ final class DepartmentDeleteHandler
         return new DepartmentDeleteOutput(
             'Successful deleting of department!',
         );
-    }
-
-    private function remove(Department $department): void
-    {
-        // TODO: возможно удаление должностей
-        $this->departmentRepository->remove($department);
     }
 }

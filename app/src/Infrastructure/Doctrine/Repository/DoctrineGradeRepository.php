@@ -66,4 +66,9 @@ final class DoctrineGradeRepository implements GradeRepositoryInterface
     {
         $this->em->persist($grade);
     }
+
+    public function remove(Grade $grade): void
+    {
+        $this->em->remove($grade);
+    }
 }
