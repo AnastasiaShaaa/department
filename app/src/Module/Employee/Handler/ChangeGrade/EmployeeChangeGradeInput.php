@@ -11,7 +11,6 @@ final class EmployeeChangeGradeInput
     public function __construct(
         private UuidInterface $id,
         private UuidInterface $gradeId,
-        private ?UuidInterface $departmentId,
     ) {}
 
     public function getId(): UuidInterface
@@ -22,10 +21,5 @@ final class EmployeeChangeGradeInput
     public function getGradeId(): UuidInterface
     {
         return $this->gradeId;
-    }
-
-    public function getDepartmentId(): ?UuidInterface
-    {
-        return $this->departmentId;
     }
 }

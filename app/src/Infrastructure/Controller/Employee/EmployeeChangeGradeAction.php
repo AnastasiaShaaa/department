@@ -9,7 +9,7 @@ use Department\Module\Employee\Handler\ChangeGrade\EmployeeChangeGradeHandler;
 use Department\Module\Employee\Handler\ChangeGrade\EmployeeChangeGradeInput;
 use Department\Module\Employee\Handler\ChangeGrade\EmployeeChangeGradeOutput;
 use Exception;
-use Infrastructure\Collector\Employee\EmployeeChangeGradeCollector;
+use Department\Infrastructure\Collector\Employee\EmployeeChangeGradeCollector;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

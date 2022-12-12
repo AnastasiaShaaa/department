@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Collector\Employee;
+namespace Department\Infrastructure\Collector\Employee;
 
 use Department\Infrastructure\Collector\AbstractCollector;
 use Department\Module\Employee\Handler\ChangeGrade\EmployeeChangeGradeInput;
@@ -30,7 +30,6 @@ final class EmployeeChangeGradeCollector extends AbstractCollector
         return new EmployeeChangeGradeInput(
             UuidEntity::fromString($requestData['id']),
             UuidEntity::fromString($requestData['grade_id']),
-            UuidEntity::fromString($requestData['department_id']),
         );
     }
 
@@ -41,9 +40,6 @@ final class EmployeeChangeGradeCollector extends AbstractCollector
                 new Uuid(),
             ]),
             'grade_id' => new Required([
-                new Uuid(),
-            ]),
-            'department_id' => new Optional([
                 new Uuid(),
             ]),
         ]);
