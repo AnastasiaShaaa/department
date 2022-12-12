@@ -8,15 +8,14 @@ use DateTimeImmutable;
 use Department\Module\Department\Model\Department;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Department\Module\Grade\Enum\GradeTypeEnum;
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class Grade
 {
     private ?Collection $employees;
 
     public function __construct(
-        private Uuid $id,
+        private UuidInterface $id,
         private string $name,
         private int $salary,
         private Department $department,
@@ -29,14 +28,14 @@ class Grade
     }
 
     public static function make(
-        Uuid $id,
+        UuidInterface $id,
         string $name,
         int $salary,
         Department $department,
         ?string $description,
         ?string $instruction,
-        ?DateTimeImmutable $createdAt,
-        ?DateTimeImmutable $updatedAt,
+        ?DateTimeImmutable $createdAt = null,
+        ?DateTimeImmutable $updatedAt = null,
     ): Grade {
         return new Grade(
             $id,
@@ -50,7 +49,7 @@ class Grade
         );
     }
 
-    public function getId(): Uuid
+    public function getId(): UuidInterface
     {
         return $this->id;
     }
