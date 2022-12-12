@@ -1,14 +1,19 @@
 employeeCreate:
   path: /api/employee/create
-  controller: Employee\Infrastructure\Controller\EmployeeCreateAction
-  methods: POST®
+  controller: Department\Infrastructure\Controller\Employee\EmployeeCreateAction
+  methods: POST
 
 employeeUpdate:
   path: /api/employee/update
-  controller: Employee\Infrastructure\Controller\EmployeeUpdateAction
+  controller: Department\Infrastructure\Controller\Employee\EmployeeUpdateAction
   methods: POST
 
 employeeDelete:
   path: /api/employee/delete
-  controller: Employee\Infrastructure\Controller\EmployeeDeleteAction
+  controller: Department\Infrastructure\Controller\Employee\EmployeeDeleteAction
+  methods: POST
+
+employeeChangeGrade:
+  path: /api/employee/change/grade
+  controller: Department\Infrastructure\Controller\Employee\EmployeeChangeGradeAction
   methods: POST

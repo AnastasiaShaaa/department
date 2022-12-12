@@ -41,7 +41,6 @@ final class DepartmentDeleteHandler
 
     private function remove(Department $department): void
     {
-        // TODO: возможно удаление должностей
         $this->departmentRepository->remove($department);
     }
 
@@ -53,7 +52,7 @@ final class DepartmentDeleteHandler
     private function makeOutput(UuidInterface $id): DepartmentDeleteOutput
     {
         return new DepartmentDeleteOutput(
-            $id->toString(),
+            $id,
         );
     }
 }
