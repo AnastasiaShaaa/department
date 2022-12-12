@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Department\Infrastructure\Controller;
 
 use Department\Common\Exception\ErrorException;
+use Department\Module\Department\Handler\Create\DepartmentCreateOutput;
 use Exception;
 use Department\Infrastructure\Collector\AbstractCollector;
 use Psr\Log\LoggerInterface;
@@ -32,5 +33,10 @@ abstract class AbstractController extends SymfonyAbstractController
         return new JsonResponse([
             'message' => $e->getMessage(),
         ]);
+    }
+
+    protected function makeResponse(mixed $output): JsonResponse
+    {
+        return new JsonResponse($output);
     }
 }

@@ -40,13 +40,4 @@ final class DepartmentCreateAction extends AbstractController
     {
         return $this->handler->handle($input);
     }
-
-    protected function makeResponse(DepartmentCreateOutput $output): JsonResponse
-    {
-        return new JsonResponse([
-            // TODO: что возвращать при создании
-            'id' => $output->getId(),
-            'message' => $output->getMessage(),
-        ]);
-    }
 }

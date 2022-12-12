@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace Department\Module\Grade\Handler\Create;
 
-final class GradeCreateOutput
+use JsonSerializable;
+
+final class GradeCreateOutput implements JsonSerializable
 {
     public function __construct(
         private string $id,
-        private string $message,
     ) {}
 
-    public function getId(): string
+    public function jsonSerialize(): array
     {
-        return $this->id;
-    }
-
-    public function getMessage(): string
-    {
-        return $this->message;
+        return [
+            'id' => $this->id,
+        ];
     }
 }

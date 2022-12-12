@@ -24,7 +24,7 @@ final class GradeDeleteHandler
         $this->remove($grade);
         $this->flush();
 
-        return $this->makeOutput();
+        return $this->makeOutput($input->getId());
     }
 
     private function find(UuidInterface $id): ?Grade
@@ -49,10 +49,10 @@ final class GradeDeleteHandler
         $this->em->flush();
     }
 
-    private function makeOutput(): GradeDeleteOutput
+    private function makeOutput(UuidInterface $id): GradeDeleteOutput
     {
         return new GradeDeleteOutput(
-            'Successful deleting of grade!',
+            $id->toString(),
         );
     }
 }

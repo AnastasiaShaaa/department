@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace Department\Module\Department\Handler\Create;
 
-final class DepartmentCreateOutput
+use JsonSerializable;
+
+final class DepartmentCreateOutput implements JsonSerializable
 {
     public function __construct(
         private string $id,
-        private string $message,
     ) {}
 
-    public function getId(): string
+    public function jsonSerialize(): array
     {
-        return $this->id;
-    }
-
-    public function getMessage(): string
-    {
-        return $this->message;
+        return [
+            'id' => $this->id,
+        ];
     }
 }

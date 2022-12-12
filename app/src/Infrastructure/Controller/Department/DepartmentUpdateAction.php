@@ -38,12 +38,4 @@ final class DepartmentUpdateAction extends AbstractController
     {
         return $this->handler->handle($input);
     }
-
-    protected function makeResponse(DepartmentUpdateOutput $output): JsonResponse
-    {
-        // TODO: что возвращать при обновлении
-        return new JsonResponse([
-            'message' => $output->getMessage(),
-        ]);
-    }
 }

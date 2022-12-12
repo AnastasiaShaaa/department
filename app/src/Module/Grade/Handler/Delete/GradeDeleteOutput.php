@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace Department\Module\Grade\Handler\Delete;
 
-final class GradeDeleteOutput
+use JsonSerializable;
+
+final class GradeDeleteOutput implements JsonSerializable
 {
     public function __construct(
-        private string $message,
+        private string $id,
     ) {}
 
-    public function getMessage(): string
+    public function jsonSerialize(): array
     {
-        return $this->message;
+        return [
+            'id' => $this->id,
+        ];
     }
 }

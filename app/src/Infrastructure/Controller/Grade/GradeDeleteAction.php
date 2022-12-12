@@ -38,12 +38,4 @@ final class GradeDeleteAction extends AbstractController
     {
         return $this->handler->handle($input);
     }
-
-    protected function makeResponse(GradeDeleteOutput $output): JsonResponse
-    {
-        return new JsonResponse([
-            // TODO: что возвращать при delete
-            'message' => $output->getMessage(),
-        ]);
-    }
 }

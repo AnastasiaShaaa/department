@@ -4,14 +4,29 @@ declare(strict_types=1);
 
 namespace Department\Module\Grade\Handler\Update;
 
-final class GradeUpdateOutput
+use JsonSerializable;
+use Ramsey\Uuid\UuidInterface;
+
+final class GradeUpdateOutput implements JsonSerializable
 {
     public function __construct(
-        private string $message,
+        private UuidInterface $id,
+        private UuidInterface $department_id,
+        private string $name,
+        private int $salary,
+        private ?string $description,
+        private ?string $instruction,
     ) {}
 
-    public function getMessage(): string
+    public function jsonSerialize(): array
     {
-        return $this->message;
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'department_id' => $this->department_id,
+            'salary' => $this->salary,
+            'description' => $this->description,
+            'instruction' => $this->instruction,
+        ];
     }
 }

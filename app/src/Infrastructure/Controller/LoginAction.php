@@ -38,12 +38,4 @@ final class LoginAction extends AbstractController
     {
         return $this->handler->handle($input);
     }
-
-    protected function makeResponse(LoginOutput $output): JsonResponse
-    {
-        return new JsonResponse([
-            'token' => $output->getToken(),
-            'refresh' => $output->getRefreshToken(),
-        ]);
-    }
 }
