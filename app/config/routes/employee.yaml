@@ -12,3 +12,8 @@ employeeDelete:
   path: /api/employee/delete
   controller: Department\Infrastructure\Controller\Employee\EmployeeDeleteAction
   methods: POST
+
+employeeChangeGrade:
+  path: /api/employee/change/grade
+  controller: Department\Infrastructure\Controller\Employee\EmployeeChangeGradeAction
+  methods: POST
