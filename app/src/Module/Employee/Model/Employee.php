@@ -104,4 +104,34 @@ final class Employee
     {
         $this->grade = $grade;
     }
+
+    public function setFullName(string $fullname): void
+    {
+        $this->fullname = $fullname;
+    }
+
+    public function setEmail(Email $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function setPhone(Phone $phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    public function setAge(int $age): void
+    {
+        $this->age = $age;
+    }
+
+    public function setAddress(?string $address): void
+    {
+        $this->address = $address;
+    }
+
+    public function setExperience(?string $experience): void
+    {
+        $this->experience = $experience;
+    }
 }
