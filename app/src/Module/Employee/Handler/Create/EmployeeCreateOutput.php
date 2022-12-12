@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Department\Module\Department\Handler\Create;
+namespace Department\Module\Employee\Handler\Create;
 
 use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
-final class DepartmentCreateOutput implements JsonSerializable
+final class EmployeeCreateOutput implements JsonSerializable
 {
     public function __construct(
         private UuidInterface $id,

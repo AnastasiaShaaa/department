@@ -54,10 +54,10 @@ final class DepartmentCreateHandler
         $this->em->flush();
     }
 
-    private function makeOutput(UuidInterface $uuid): DepartmentCreateOutput
+    private function makeOutput(UuidInterface $id): DepartmentCreateOutput
     {
         return new DepartmentCreateOutput(
-            $uuid->toString(),
+            $id,
         );
     }
 }
