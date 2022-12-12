@@ -4,14 +4,23 @@ declare(strict_types=1);
 
 namespace Department\Module\Department\Handler\Update;
 
-final class DepartmentUpdateOutput
+use JsonSerializable;
+use Ramsey\Uuid\UuidInterface;
+
+final class DepartmentUpdateOutput implements JsonSerializable
 {
     public function __construct(
-        private string $message,
+        private UuidInterface $id,
+        private string $name,
+        private string $description,
     ) {}
 
-    public function getMessage(): string
+    public function jsonSerialize(): array
     {
-        return $this->message;
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+        ];
     }
 }

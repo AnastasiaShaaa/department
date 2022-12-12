@@ -25,7 +25,7 @@ final class DepartmentUpdateHandler
         $this->update($department, $input);
         $this->flush();
 
-        return $this->makeOutput();
+        return $this->makeOutput($department);
     }
 
     private function find(UuidInterface $id): ?Department
@@ -59,10 +59,12 @@ final class DepartmentUpdateHandler
         $this->em->flush();
     }
 
-    private function makeOutput(): DepartmentUpdateOutput
+    private function makeOutput(Department $department): DepartmentUpdateOutput
     {
         return new DepartmentUpdateOutput(
-            'Successful updating of department!',
+            $department->getId(),
+            $department->getName(),
+            $department->getDescription(),
         );
     }
 }

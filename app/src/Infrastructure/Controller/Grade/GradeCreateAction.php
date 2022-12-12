@@ -38,13 +38,4 @@ final class GradeCreateAction extends AbstractController
     {
         return $this->handler->handle($input);
     }
-
-    protected function makeResponse(GradeCreateOutput $output): JsonResponse
-    {
-        return new JsonResponse([
-            // TODO: что возвращать при создании
-            'id' => $output->getId(),
-            'message' => $output->getMessage(),
-        ]);
-    }
 }

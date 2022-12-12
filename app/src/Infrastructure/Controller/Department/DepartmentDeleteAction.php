@@ -38,12 +38,4 @@ final class DepartmentDeleteAction extends AbstractController
     {
         return $this->handler->handle($input);
     }
-
-    protected function makeResponse(DepartmentDeleteOutput $output): JsonResponse
-    {
-        return new JsonResponse([
-            // TODO: что возвращать при delete
-            'message' => $output->getMessage(),
-        ]);
-    }
 }

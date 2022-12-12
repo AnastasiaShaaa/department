@@ -24,7 +24,7 @@ final class DepartmentDeleteHandler
         $this->remove($department);
         $this->flush();
 
-        return $this->makeOutput();
+        return $this->makeOutput($input->getId());
     }
 
     private function find(UuidInterface $id): ?Department
@@ -50,10 +50,10 @@ final class DepartmentDeleteHandler
         $this->em->flush();
     }
 
-    private function makeOutput(): DepartmentDeleteOutput
+    private function makeOutput(UuidInterface $id): DepartmentDeleteOutput
     {
         return new DepartmentDeleteOutput(
-            'Successful deleting of department!',
+            $id->toString(),
         );
     }
 }

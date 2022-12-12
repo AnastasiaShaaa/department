@@ -38,12 +38,4 @@ final class GradeUpdateAction extends AbstractController
     {
         return $this->handler->handle($input);
     }
-
-    protected function makeResponse(GradeUpdateOutput $output): JsonResponse
-    {
-        return new JsonResponse([
-            // TODO: что возвращать при update
-            'message' => $output->getMessage(),
-        ]);
-    }
 }

@@ -78,7 +78,6 @@ final class GradeCreateHandler
     {
         return new GradeCreateOutput(
             $uuid->toString(),
-            'Successful creation of grade!'
         );
     }
 }

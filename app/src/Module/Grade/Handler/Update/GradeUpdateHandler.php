@@ -33,7 +33,7 @@ final class GradeUpdateHandler
         $this->update($grade, $department, $input);
         $this->flush();
 
-        return $this->makeOutput();
+        return $this->makeOutput($grade);
     }
 
     private function findDepartment(UuidInterface $id): ?Department
@@ -84,10 +84,15 @@ final class GradeUpdateHandler
         $this->em->flush();
     }
 
-    private function makeOutput(): GradeUpdateOutput
+    private function makeOutput(Grade $grade): GradeUpdateOutput
     {
         return new GradeUpdateOutput(
-            'Successful updating of grade!',
+            $grade->getId(),
+            $grade->getDepartment()->getId(),
+            $grade->getName(),
+            $grade->getSalary(),
+            $grade->getDescription(),
+            $grade->getInstruction(),
         );
     }
 }

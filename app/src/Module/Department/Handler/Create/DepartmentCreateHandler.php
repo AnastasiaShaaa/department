@@ -58,7 +58,6 @@ final class DepartmentCreateHandler
     {
         return new DepartmentCreateOutput(
             $uuid->toString(),
-            'Successful creation of department!'
         );
     }
 }
