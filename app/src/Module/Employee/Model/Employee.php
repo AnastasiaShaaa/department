@@ -24,6 +24,7 @@ final class Employee
         private DateTimeImmutable $updatedAt,
         private ?string $address,
         private ?string $experience,
+        private ?DateTimeImmutable $deletedAt,
     ) {}
 
     public static function make(
@@ -34,6 +35,7 @@ final class Employee
         int $age,
         ?string $address,
         ?string $experience,
+        DateTimeImmutable $deletedAt = null,
         DateTimeImmutable $createdAt = null,
         DateTimeImmutable $updatedAt = null,
     ): Employee {
@@ -47,6 +49,7 @@ final class Employee
             $updatedAt ?? new DateTimeImmutable(),
             $address,
             $experience,
+            $deletedAt
         );
     }
 
@@ -95,6 +98,11 @@ final class Employee
         return $this->updatedAt;
     }
 
+    public function getDeletedAt(): ?DateTimeImmutable
+    {
+        return $this->deletedAt;
+    }
+
     public function getGrade(): ?Grade
     {
         return $this->grade;
@@ -133,5 +141,15 @@ final class Employee
     public function setExperience(?string $experience): void
     {
         $this->experience = $experience;
+    }
+
+    public function setDeletedAt(?DateTimeImmutable $deletedAt): void
+    {
+        $this->deletedAt = $deletedAt;
+    }
+
+    function doUpdateAt(): void
+    {
+        $this->updatedAt = new DateTimeImmutable();
     }
 }

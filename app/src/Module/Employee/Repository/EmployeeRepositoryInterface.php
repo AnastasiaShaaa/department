@@ -14,6 +14,8 @@ interface EmployeeRepositoryInterface
 
     public function findById(UuidInterface $id): ?Employee;
 
+    public function findActiveById(UuidInterface $id): ?Employee;
+
     public function isDuplicate(Email $email, UuidInterface $id): bool;
 
     public function save(Employee $employee);

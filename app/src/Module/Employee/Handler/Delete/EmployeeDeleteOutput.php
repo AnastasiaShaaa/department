@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Department\Module\Department\Handler\Delete;
+namespace Department\Module\Employee\Handler\Delete;
 
 use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
-final class DepartmentDeleteOutput implements JsonSerializable
+final class EmployeeDeleteOutput implements JsonSerializable
 {
     public function __construct(
         private UuidInterface $id,

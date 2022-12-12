@@ -7,6 +7,7 @@ namespace Department\Infrastructure\Doctrine\Repository;
 use Department\Module\Employee\Field\Email;
 use Department\Module\Employee\Model\Employee;
 use Department\Module\Employee\Repository\EmployeeRepositoryInterface;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Ramsey\Uuid\UuidInterface;
@@ -38,6 +39,18 @@ final class DoctrineEmployeeRepository implements EmployeeRepositoryInterface
     public function findById(UuidInterface $id): ?Employee
     {
         return $this->entityRepository->find($id);
+    }
+
+    public function findActiveById(UuidInterface $id): ?Employee
+    {
+        $qb = $this->entityRepository->createQueryBuilder('e');
+
+        return $qb
+            ->andWhere($qb->expr()->eq('e.id', ':id'))
+            ->andWhere($qb->expr()->isNull('e.deletedAt'))
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult(AbstractQuery::HYDRATE_OBJECT);
     }
 
     public function isDuplicate(Email $email, UuidInterface $id): bool

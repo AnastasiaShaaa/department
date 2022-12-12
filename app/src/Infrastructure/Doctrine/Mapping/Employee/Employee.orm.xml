@@ -20,23 +20,25 @@
         <field name="age" type="integer" nullable="true" />
         <field name="address" type="string" length="255" nullable="true" />
         <field name="experience" type="string" length="50" nullable="true" />
-        <field name="createdAt" column="created_at" type="datetime_immutable" >
+        <field name="deletedAt" type="datetime_immutable" nullable="true"/>
+        <field name="createdAt" type="datetime_immutable" >
             <options>
                 <option name="default">CURRENT_TIMESTAMP</option>
             </options>
         </field>
-        <field name="updatedAt" column="updated_at" type="datetime_immutable" >
+        <field name="updatedAt" type="datetime_immutable" >
             <options>
                 <option name="default">CURRENT_TIMESTAMP</option>
             </options>
         </field>
 
-        <one-to-one field="grade" target-entity="Department\Module\Employee\Model\EmployeeGrade" mapped-by="employee" orphan-removal="true">
-            <cascade>
-                <cascade-remove/>
-                <cascade-persist/>
-            </cascade>
-        </one-to-one>
+        <many-to-one field="grade" target-entity="Department\Module\Grade\Model\Grade" inversed-by="employees">
+            <join-column name="grade_id" referenced-column-name="id" on-delete="CASCADE" />
+        </many-to-one>
+
+<!--        <lifecycle-callbacks>-->
+<!--            <lifecycle-callback type="prePersist" method="doUpdateAt"/>-->
+<!--        </lifecycle-callbacks>-->
     </entity>
 
 </doctrine-mapping>
