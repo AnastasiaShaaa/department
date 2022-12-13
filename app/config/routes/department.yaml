@@ -17,3 +17,13 @@ departmentList:
   path: /api/department/public/list
   controller: Department\Infrastructure\Controller\Department\DepartmentListAction
   methods: GET
+  
+departmentView:
+  path: /api/department/public/view
+  controller: Department\Infrastructure\Controller\Department\DepartmentViewAction
+  methods: POST
+
+departmentViewAuth:
+  path: /api/department/view
+  controller: Department\Infrastructure\Controller\Department\DepartmentViewAction
+  methods: POST

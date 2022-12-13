@@ -14,7 +14,7 @@ final class GradeViewAuthorizeOutput implements GradeViewOutputInterface
         private Grade $grade,
     ) {}
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->grade->getId(),
@@ -29,7 +29,7 @@ final class GradeViewAuthorizeOutput implements GradeViewOutputInterface
         ];
     }
 
-    private function prepareEmployees(Collection $employees): ?array
+    private function prepareEmployees(Collection $employees): array
     {
         $employees = $employees->filter(fn (Employee $employee) => is_null($employee->getDeletedAt()));
 

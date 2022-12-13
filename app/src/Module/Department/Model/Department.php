@@ -73,4 +73,9 @@ class Department
     {
         $this->description = $description;
     }
+
+    public function getGrades(): ?Collection
+    {
+        return $this->grades;
+    }
 }

@@ -12,7 +12,7 @@ final class GradeViewPublicOutput implements GradeViewOutputInterface
         private Grade $grade,
     ) {}
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->grade->getId(),

@@ -12,7 +12,7 @@ final class EmployeeViewAuthorizeOutput implements EmployeeViewOutputInterface
         private Employee $employee,
     ) {}
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->employee->getId(),
