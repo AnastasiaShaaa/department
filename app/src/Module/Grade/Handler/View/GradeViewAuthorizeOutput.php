@@ -10,9 +10,7 @@ use Doctrine\Common\Collections\Collection;
 
 final class GradeViewAuthorizeOutput implements GradeViewOutputInterface
 {
-    public function __construct(
-        private Grade $grade,
-    ) {}
+    private Grade $grade;
 
     public function jsonSerialize(): array
     {
@@ -47,5 +45,10 @@ final class GradeViewAuthorizeOutput implements GradeViewOutputInterface
             'id' => $employee->getId(),
             'fullName' => $employee->getFullName(),
         ];
+    }
+
+    public function setGrade(Grade $grade): void
+    {
+        $this->grade = $grade;
     }
 }

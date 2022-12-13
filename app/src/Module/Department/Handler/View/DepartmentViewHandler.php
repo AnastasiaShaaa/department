@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Department\Module\Department\Handler\View;
 
+use Common\Factory\FactoryOutput;
 use Department\Module\Department\Model\Department;
 use Department\Module\Department\Repository\DepartmentRepositoryInterface;
 use DomainException;
@@ -13,6 +14,7 @@ final class DepartmentViewHandler
 {
     public function __construct(
         private DepartmentRepositoryInterface $departmentRepository,
+        private FactoryOutput $factoryOutput,
     ) {}
 
     public function handle(DepartmentViewInput $input, bool $isAuthorized = false): DepartmentViewOutputInterface
@@ -37,15 +39,10 @@ final class DepartmentViewHandler
 
     private function makeOutput(Department $department, bool $isAuthorized): DepartmentViewOutputInterface
     {
-        // TODO: Abstract Fabric ($isAuthorized, DepartmentViewOutputInterface::class)
-        if ($isAuthorized) {
-            return new DepartmentViewAuthorizeOutput(
-                $department,
-            );
-        }
+        /** @var DepartmentViewOutputInterface $output */
+        $output = $this->factoryOutput->makeOutput($isAuthorized, DepartmentViewOutputInterface::class);
+        $output->setDepartment($department);
 
-        return new DepartmentViewPublicOutput(
-            $department,
-        );
+        return $output;
     }
 }

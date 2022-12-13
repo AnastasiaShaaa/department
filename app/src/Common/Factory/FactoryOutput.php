@@ -15,12 +15,12 @@ use Department\Module\Grade\Handler\View\GradeViewOutputInterface;
 
 final class FactoryOutput
 {
-    public static function makeOutput(bool $isAuthorized, string $class): OutputInterface
+    public function makeOutput(bool $isAuthorized, string $class): OutputInterface
     {
-        return $isAuthorized ? self::makeAuthorizedOutput($class) : self::makePublicOutput($class);
+        return $isAuthorized ? $this->makeAuthorizedOutput($class) : $this->makePublicOutput($class);
     }
 
-    private static function makeAuthorizedOutput(string $class): ?OutputInterface
+    private function makeAuthorizedOutput(string $class): ?OutputInterface
     {
         return match ($class) {
             DepartmentViewOutputInterface::class => new DepartmentViewAuthorizeOutput(),
@@ -30,7 +30,7 @@ final class FactoryOutput
         };
     }
 
-    private static function makePublicOutput(string $class): ?OutputInterface
+    private function makePublicOutput(string $class): ?OutputInterface
     {
         return match ($class) {
             DepartmentViewOutputInterface::class => new DepartmentViewAuthorizeOutput(),

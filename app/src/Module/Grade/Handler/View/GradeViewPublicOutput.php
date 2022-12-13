@@ -8,9 +8,7 @@ use Department\Module\Grade\Model\Grade;
 
 final class GradeViewPublicOutput implements GradeViewOutputInterface
 {
-    public function __construct(
-        private Grade $grade,
-    ) {}
+    private Grade $grade;
 
     public function jsonSerialize(): array
     {
@@ -20,5 +18,10 @@ final class GradeViewPublicOutput implements GradeViewOutputInterface
             'description' => $this->grade->getDescription(),
             'department' => $this->grade->getDepartment()->getName(),
         ];
+    }
+
+    public function setGrade(Grade $grade): void
+    {
+        $this->grade = $grade;
     }
 }

@@ -9,10 +9,8 @@ use Department\Module\Grade\Model\Grade;
 
 final class DepartmentViewPublicOutput implements DepartmentViewOutputInterface
 {
-    public function __construct(
-        private Department $department,
-    ) {}
-    
+    private Department $department;
+
     public function jsonSerialize(): array
     {
         return [
@@ -28,5 +26,10 @@ final class DepartmentViewPublicOutput implements DepartmentViewOutputInterface
     private function prepareGrade(Grade $grade): string
     {
         return $grade->getName();
+    }
+
+    public function setDepartment(Department $department): void
+    {
+        $this->department = $department;
     }
 }

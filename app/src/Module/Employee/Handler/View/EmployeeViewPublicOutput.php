@@ -8,9 +8,7 @@ use Department\Module\Employee\Model\Employee;
 
 final class EmployeeViewPublicOutput implements EmployeeViewOutputInterface
 {
-    public function __construct(
-        private Employee $employee,
-    ) {}
+    private Employee $employee;
 
     public function jsonSerialize(): array
     {
@@ -21,5 +19,10 @@ final class EmployeeViewPublicOutput implements EmployeeViewOutputInterface
             'department' => $this->employee->getGrade()->getDepartment()->getName(),
             'email' => $this->employee->getEmail()->getValue(),
         ];
+    }
+
+    public function setEmployee(Employee $employee): void
+    {
+        $this->employee = $employee;
     }
 }
