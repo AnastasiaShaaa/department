@@ -27,3 +27,8 @@ departmentViewAuth:
   path: /api/department/view
   controller: Department\Infrastructure\Controller\Department\DepartmentViewAction
   methods: POST
+
+departmentViewGrade:
+  path: /api/department/public/view/grade
+  controller: Department\Infrastructure\Controller\Department\DepartmentViewGradeAction
+  methods: POST
