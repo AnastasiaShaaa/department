@@ -16,6 +16,8 @@ interface GradeRepositoryInterface
 
     public function isDuplicate(Department $department, string $name, UuidInterface $id): bool;
 
+    public function findList(): array;
+
     public function save(Grade $grade): void;
 
     public function remove(Grade $grade): void;

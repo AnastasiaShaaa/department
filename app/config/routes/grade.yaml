@@ -12,3 +12,8 @@ gradeDelete:
   path: /api/grade/delete
   controller: Department\Infrastructure\Controller\Grade\GradeDeleteAction
   methods: POST
+
+gradeList:
+  path: /api/grade/public/list
+  controller: Department\Infrastructure\Controller\Grade\GradeListAction
+  methods: GET

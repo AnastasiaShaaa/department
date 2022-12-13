@@ -62,6 +62,16 @@ final class DoctrineGradeRepository implements GradeRepositoryInterface
                 ->getSingleScalarResult() > 0;
     }
 
+    public function findList(): array
+    {
+        $qb = $this->entityRepository->createQueryBuilder('e');
+
+        return $qb
+            ->select(['e.id', 'e.name', 'e.description'])
+            ->getQuery()
+            ->getArrayResult();
+    }
+
     public function save(Grade $grade): void
     {
         $this->em->persist($grade);
