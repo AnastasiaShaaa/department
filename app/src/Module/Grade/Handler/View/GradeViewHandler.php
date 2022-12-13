@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Department\Module\Grade\Handler\View;
 
-use Common\Factory\FactoryOutput;
+use Department\Common\Factory\FactoryOutput;
 use Department\Module\Grade\Model\Grade;
 use Department\Module\Grade\Repository\GradeRepositoryInterface;
 use DomainException;

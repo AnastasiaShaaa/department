@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Common\Output;
+namespace Department\Common\Output;
 
 interface OutputInterface
 {

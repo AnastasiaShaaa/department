@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Common\Factory;
+namespace Department\Common\Factory;
 
-use Common\Output\Output;
-use Common\Output\OutputInterface;
+use Department\Common\Output\Output;
+use Department\Common\Output\OutputInterface;
 use Department\Module\Department\Handler\View\DepartmentViewAuthorizeOutput;
 use Department\Module\Department\Handler\View\DepartmentViewOutputInterface;
 use Department\Module\Employee\Handler\View\EmployeeViewAuthorizeOutput;

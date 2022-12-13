@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Department\Module\Department\Handler\View;
 
-use Common\Output\OutputInterface;
+use Department\Common\Output\OutputInterface;
 use Department\Module\Department\Model\Department;
 use JsonSerializable;
 
