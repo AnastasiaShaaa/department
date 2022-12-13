@@ -18,5 +18,7 @@ interface EmployeeRepositoryInterface
 
     public function isDuplicate(Email $email, UuidInterface $id): bool;
 
+    public function findList(): array;
+
     public function save(Employee $employee);
 }

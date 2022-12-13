@@ -64,10 +64,10 @@ final class DoctrineGradeRepository implements GradeRepositoryInterface
 
     public function findList(): array
     {
-        $qb = $this->entityRepository->createQueryBuilder('e');
+        $qb = $this->entityRepository->createQueryBuilder('g');
 
         return $qb
-            ->select(['e.id', 'e.name', 'e.description'])
+            ->select(['g.id', 'g.name', 'g.description'])
             ->getQuery()
             ->getArrayResult();
     }

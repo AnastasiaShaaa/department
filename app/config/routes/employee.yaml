@@ -17,3 +17,8 @@ employeeChangeGrade:
   path: /api/employee/change/grade
   controller: Department\Infrastructure\Controller\Employee\EmployeeChangeGradeAction
   methods: POST
+
+employeeList:
+  path: /api/employee/public/list
+  controller: Department\Infrastructure\Controller\Employee\EmployeeListAction
+  methods: GET

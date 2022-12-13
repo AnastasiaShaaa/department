@@ -69,6 +69,25 @@ final class DoctrineEmployeeRepository implements EmployeeRepositoryInterface
                 ->getSingleScalarResult() > 0;
     }
 
+    public function findList(): array
+    {
+        $qb = $this->em->getConnection()->createQueryBuilder();
+
+        return $qb
+            ->select([
+                'e.id',
+                'e.fullname',
+                'g.id AS grade_id',
+                'g.name AS grade_name',
+                'd.id AS department_id',
+                'd.name AS department_name',
+            ])
+            ->from('employees', 'e')
+            ->leftJoin('e', 'grades', 'g', 'e.grade_id = g.id')
+            ->leftJoin('g', 'departments', 'd', 'g.department_id = d.id')
+            ->fetchAllAssociative();
+    }
+
     public function save(Employee $employee)
     {
         $this->em->persist($employee);
