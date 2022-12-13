@@ -113,4 +113,9 @@ class Grade
     {
         $this->instruction = $instruction;
     }
+
+    public function getEmployees(): ?Collection
+    {
+        return $this->employees;
+    }
 }
