@@ -36,11 +36,6 @@ final class DoctrineEmployeeRepository implements EmployeeRepositoryInterface
                 ->getSingleScalarResult() > 0;
     }
 
-    public function findById(UuidInterface $id): ?Employee
-    {
-        return $this->entityRepository->find($id);
-    }
-
     public function findActiveById(UuidInterface $id): ?Employee
     {
         $qb = $this->entityRepository->createQueryBuilder('e');

@@ -12,8 +12,6 @@ interface EmployeeRepositoryInterface
 {
     public function isExist(Email $email): bool;
 
-    public function findById(UuidInterface $id): ?Employee;
-
     public function findActiveById(UuidInterface $id): ?Employee;
 
     public function isDuplicate(Email $email, UuidInterface $id): bool;

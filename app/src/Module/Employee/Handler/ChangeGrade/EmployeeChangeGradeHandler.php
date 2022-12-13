@@ -38,7 +38,7 @@ final class EmployeeChangeGradeHandler
 
     private function findEmployee(UuidInterface $id): ?Employee
     {
-        return $this->employeeRepository->findById($id);
+        return $this->employeeRepository->findActiveById($id);
     }
 
     private function findGrade(UuidInterface $id): ?Grade

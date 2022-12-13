@@ -31,7 +31,7 @@ final class EmployeeUpdateHandler
 
     private function find(UuidInterface $id): ?Employee
     {
-        return $this->employeeRepository->findById($id);
+        return $this->employeeRepository->findActiveById($id);
     }
 
     private function assertExistence(?Employee $employee): void
