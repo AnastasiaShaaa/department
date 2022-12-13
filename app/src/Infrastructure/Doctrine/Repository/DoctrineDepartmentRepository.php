@@ -60,6 +60,16 @@ final class DoctrineDepartmentRepository implements DepartmentRepositoryInterfac
                 ->getSingleScalarResult() > 0;
     }
 
+    public function findList(): array
+    {
+        $qb = $this->entityRepository->createQueryBuilder('d');
+
+        return $qb
+            ->select(['d.id', 'd.name', 'd.description'])
+            ->getQuery()
+            ->getArrayResult();
+    }
+
     public function remove(Department $department): void
     {
         $this->em->remove($department);

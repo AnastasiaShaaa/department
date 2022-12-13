@@ -9,13 +9,15 @@ use Ramsey\Uuid\UuidInterface;
 
 interface DepartmentRepositoryInterface
 {
-    public function save(Department $department): void;
-
     public function isExist(string $name): bool;
 
     public function findById(UuidInterface $id): ?Department;
 
     public function isDuplicate(string $name, UuidInterface $id): bool;
+
+    public function findList(): array;
+
+    public function save(Department $department): void;
 
     public function remove(Department $department): void;
 }
