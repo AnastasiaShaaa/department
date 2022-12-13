@@ -85,6 +85,7 @@ final class DoctrineEmployeeRepository implements EmployeeRepositoryInterface
             ->from('employees', 'e')
             ->leftJoin('e', 'grades', 'g', 'e.grade_id = g.id')
             ->leftJoin('g', 'departments', 'd', 'g.department_id = d.id')
+            ->andWhere($qb->expr()->isNull('e.deleted_at'))
             ->fetchAllAssociative();
     }
 

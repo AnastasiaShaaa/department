@@ -17,3 +17,13 @@ gradeList:
   path: /api/grade/public/list
   controller: Department\Infrastructure\Controller\Grade\GradeListAction
   methods: GET
+
+gradeView:
+  path: /api/grade/public/view
+  controller: Department\Infrastructure\Controller\Grade\GradeViewAction
+  methods: POST
+
+gradeViewAuth:
+  path: /api/grade/view
+  controller: Department\Infrastructure\Controller\Grade\GradeViewAction
+  methods: POST
