@@ -8,9 +8,7 @@ use Department\Module\Employee\Model\Employee;
 
 final class EmployeeViewAuthorizeOutput implements EmployeeViewOutputInterface
 {
-    public function __construct(
-        private Employee $employee,
-    ) {}
+    private Employee $employee;
 
     public function jsonSerialize(): array
     {
@@ -26,5 +24,10 @@ final class EmployeeViewAuthorizeOutput implements EmployeeViewOutputInterface
             'experience' => $this->employee->getExperience(),
             'phone' => $this->employee->getPhone()->getValue(),
         ];
+    }
+
+    public function setEmployee(Employee $employee): void
+    {
+        $this->employee = $employee;
     }
 }

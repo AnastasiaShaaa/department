@@ -11,9 +11,7 @@ use Doctrine\Common\Collections\Collection;
 
 final class DepartmentViewAuthorizeOutput implements DepartmentViewOutputInterface
 {
-    public function __construct(
-        private Department $department,
-    ) {}
+    private Department $department;
 
     public function jsonSerialize(): array
     {
@@ -78,5 +76,10 @@ final class DepartmentViewAuthorizeOutput implements DepartmentViewOutputInterfa
             'id' => $employee->getId(),
             'fullName' => $employee->getFullName(),
         ];
+    }
+
+    public function setDepartment(Department $department): void
+    {
+        $this->department = $department;
     }
 }

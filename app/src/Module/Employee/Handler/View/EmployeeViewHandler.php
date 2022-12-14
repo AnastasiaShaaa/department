@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Department\Module\Employee\Handler\View;
 
+use Department\Common\Factory\FactoryOutput;
 use Department\Module\Employee\Model\Employee;
 use Department\Module\Employee\Repository\EmployeeRepositoryInterface;
 use DomainException;
@@ -13,6 +14,7 @@ final class EmployeeViewHandler
 {
     public function __construct(
         private EmployeeRepositoryInterface $employeeRepository,
+        private FactoryOutput $factoryOutput,
     ) {}
 
     public function handle(EmployeeViewInput $input, bool $isAuthorized = false): EmployeeViewOutputInterface
@@ -37,15 +39,10 @@ final class EmployeeViewHandler
 
     private function makeOutput(Employee $employee, bool $isAuthorized): EmployeeViewOutputInterface
     {
-        // TODO: Abstract Fabric ($isAuthorized, EmployeeViewOutputInterface::class)
-        if ($isAuthorized) {
-            return new EmployeeViewAuthorizeOutput(
-                $employee,
-            );
-        }
+        /** @var EmployeeViewOutputInterface $output */
+        $output = $this->factoryOutput->makeOutput($isAuthorized, EmployeeViewOutputInterface::class);
+        $output->setEmployee($employee);
 
-        return new EmployeeViewPublicOutput(
-            $employee,
-        );
+        return $output;
     }
 }

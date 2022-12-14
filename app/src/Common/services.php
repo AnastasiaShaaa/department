@@ -20,4 +20,8 @@ return function(ContainerConfigurator $configurator): void {
 
     $services
         ->alias(TokenManagerInterface::class, CustomTokenManager::class);
+
+    $services
+        ->load('Department\\Common\\Output\\', __DIR__ . '/Output/')
+        ->load('Department\\Common\\Factory\\', __DIR__ . '/Factory/');
 };

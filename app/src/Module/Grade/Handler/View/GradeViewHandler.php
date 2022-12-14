@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Department\Module\Grade\Handler\View;
 
+use Department\Common\Factory\FactoryOutput;
 use Department\Module\Grade\Model\Grade;
 use Department\Module\Grade\Repository\GradeRepositoryInterface;
 use DomainException;
@@ -13,6 +14,7 @@ final class GradeViewHandler
 {
     public function __construct(
         private GradeRepositoryInterface $gradeRepository,
+        private FactoryOutput $factoryOutput,
     ) {}
 
     public function handle(GradeViewInput $input, bool $isAuthorized = false): GradeViewOutputInterface
@@ -37,15 +39,10 @@ final class GradeViewHandler
 
     private function makeOutput(Grade $grade, bool $isAuthorized): GradeViewOutputInterface
     {
-        // TODO: Abstract Fabric ($isAuthorized, GradeViewOutputInterface::class)
-        if ($isAuthorized) {
-            return new GradeViewAuthorizeOutput(
-                $grade,
-            );
-        }
+        /** @var GradeViewOutputInterface $output */
+        $output = $this->factoryOutput->makeOutput($isAuthorized, GradeViewOutputInterface::class);
+        $output->setGrade($grade);
 
-        return new GradeViewPublicOutput(
-            $grade,
-        );
+        return $output;
     }
 }
